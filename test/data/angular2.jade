@@ -1,0 +1,4 @@
+html
+  body
+    li(*ngFor="#item of items; #i = index")
+      a([routerLink]="['./Item', {id: item.id}]") {{ item }}
