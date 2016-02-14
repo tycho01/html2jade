@@ -1,7 +1,8 @@
 import {Parser} from './parser';
 import {Writer} from './writer';
+import {Output} from './output';
 
-var Converter, Ent, FS, Output, Path, StreamOutput, StringOutput, applyOptions, doNotEncode, entOptions, isNode, nspaces, publicIdDocTypeNames, scope, systemIdDocTypeNames, useTabs,
+var Converter, Ent, FS, Path, StreamOutput, StringOutput, applyOptions, doNotEncode, entOptions, isNode, nspaces, publicIdDocTypeNames, scope, systemIdDocTypeNames, useTabs,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
 

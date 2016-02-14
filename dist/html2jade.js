@@ -4,10 +4,11 @@ var _parser = require('./parser');
 
 var _writer = require('./writer');
 
+var _output = require('./output');
+
 var Converter,
     Ent,
     FS,
-    Output,
     Path,
     StreamOutput,
     StringOutput,
@@ -295,47 +296,6 @@ Converter = function () {
   return Converter;
 }();
 
-Output = function () {
-  function Output() {
-    this.indents = '';
-  }
-
-  Output.prototype.enter = function () {
-    var i, j, ref, results;
-    if (useTabs) {
-      return this.indents += '\t';
-    } else {
-      results = [];
-      for (i = j = 1, ref = nspaces; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
-        results.push(this.indents += ' ');
-      }
-      return results;
-    }
-  };
-
-  Output.prototype.leave = function () {
-    if (useTabs) {
-      return this.indents = this.indents.substring(1);
-    } else {
-      return this.indents = this.indents.substring(nspaces);
-    }
-  };
-
-  Output.prototype.write = function (data, indent) {
-    if (indent == null) {
-      indent = true;
-    }
-  };
-
-  Output.prototype.writeln = function (data, indent) {
-    if (indent == null) {
-      indent = true;
-    }
-  };
-
-  return Output;
-}();
-
 StringOutput = function (superClass) {
   extend(StringOutput, superClass);
 
@@ -380,7 +340,7 @@ StringOutput = function (superClass) {
   };
 
   return StringOutput;
-}(Output);
+}(_output.Output);
 
 StreamOutput = function (superClass) {
   extend(StreamOutput, superClass);
@@ -419,9 +379,9 @@ StreamOutput = function (superClass) {
   };
 
   return StreamOutput;
-}(Output);
+}(_output.Output);
 
-scope.Output = Output;
+scope.Output = _output.Output;
 
 scope.StringOutput = StringOutput;
 
