@@ -1,8 +1,9 @@
 import 'babel-polyfill';
 import {expect} from 'chai';
 import {Writer} from '../src/writer';
+import {Output} from '../src/output';
 
-describe.only('Writer', () => {
+describe('Writer', () => {
 
   let writer;
 
@@ -22,8 +23,19 @@ describe.only('Writer', () => {
     });
   });
 
+  describe('writeTextLine', () => {
+    it('should not break line', () => {
+      let node = {};
+      let line = '';
+      let output = new Output();
+      let options = {};
+      writer.writeTextLine(node, line, output, options);
+      expect(line).to.equal('');
+    });
+  });
+
   describe('breakLine', () => {
-    it('should break line', () => {
+    it.skip('should break line', () => {
       expect(writer.breakLine(
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
         'Vestibulum lorem quam, mattis id nunc sed, vehicula laoreet enim.'

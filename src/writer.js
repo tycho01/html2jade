@@ -1,3 +1,5 @@
+let Ent = require("he");
+
 let validJadeIdRegExp = /^[\w\-]+$/;
 
 let validJadeClassRegExp = /^[\w\-]+$/;
