@@ -5,13 +5,13 @@
   "author": "Don Park <donpark@docuverse.com>",
   "repository": "git://github.com/donpark/html2jade.git",
   "license": "BSD",
-  "main": "./lib/html2jade.js",
+  "main": "./dist/html2jade.js",
   "bin": {
     "html2jade": "./cli.js"
   },
   "scripts": {
-    "prepublish": "coffee -c lib",
-    "test": "mocha"
+    "prepublish": "babel --presets es2015 src --out-dir dist",
+    "test": "mocha --compilers js:babel-core/register test/*.spec.js"
   },
   "dependencies": {
     "commander": "*",
@@ -20,8 +20,11 @@
   },
   "devDependencies": {
     "async": "*",
-    "mocha": "*",
-    "coffee-script": "~1.9.2"
+    "babel-cli": "~6.5.1",
+    "babel-core": "~6.5.1",
+    "babel-preset-es2015": "~6.5.0",
+    "coffee-script": "~1.9.2",
+    "mocha": "*"
   },
   "engines": {
     "node": ">= 0.4.0"

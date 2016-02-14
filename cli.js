@@ -10,7 +10,7 @@ var html2jade;
 try {
     html2jade = require('html2jade');
 } catch(err) {
-    html2jade = require('./lib/html2jade');
+    html2jade = require('./dist/html2jade');
 }
 
 function parsePath(arg) {
