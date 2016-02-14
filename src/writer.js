@@ -12,8 +12,8 @@ export function isValidJadeClassName(className) {
   return className && validJadeClassRegExp.test(className);
 };
 
-let Writer = (function() {
-  function Writer(options) {
+export class Writer {
+  constructor(options) {
     var ref, ref1, ref2;
     if (options == null) {
       options = {};
@@ -32,7 +32,7 @@ let Writer = (function() {
     this.noEmptyPipe = (ref2 = options.noemptypipe) != null ? ref2 : false;
   }
 
-  Writer.prototype.tagHead = function(node) {
+  tagHead(node) {
     var result, validClassNames;
     result = node.tagName !== 'DIV' ? node.tagName.toLowerCase() : '';
     if (node.id && isValidJadeId(node.id)) {
@@ -48,9 +48,9 @@ let Writer = (function() {
       result = 'div';
     }
     return result;
-  };
+  }
 
-  Writer.prototype.tagAttr = function(node, indents) {
+  tagAttr(node, indents) {
     var attr, attrName, attrValue, attrs, invalidClassNames, j, len, result;
     if (indents == null) {
       indents = '';
@@ -86,9 +86,9 @@ let Writer = (function() {
         return '';
       }
     }
-  };
+  }
 
-  Writer.prototype.buildTagAttr = function(attrName, attrValue) {
+  buildTagAttr(attrName, attrValue) {
     if (attrValue.indexOf(this.attrQuote) === -1) {
       return attrName + "=" + this.attrQuote + attrValue + this.attrQuote;
     } else if (attrValue.indexOf(this.nonAttrQuote) === -1) {
@@ -97,9 +97,9 @@ let Writer = (function() {
       attrValue = attrValue.replace(new RegExp(this.attrQuote, 'g'), this.attrQuoteEscaped);
       return attrName + "=" + this.attrQuote + attrValue + this.attrQuote;
     }
-  };
+  }
 
-  Writer.prototype.tagText = function(node) {
+  tagText(node) {
     var data, ref;
     if (((ref = node.firstChild) != null ? ref.nodeType : void 0) !== 3) {
       return null;
@@ -113,9 +113,9 @@ let Writer = (function() {
         return data;
       }
     }
-  };
+  }
 
-  Writer.prototype.forEachChild = function(parent, cb) {
+  forEachChild(parent, cb) {
     var child, results;
     if (parent) {
       child = parent.firstChild;
@@ -126,9 +126,9 @@ let Writer = (function() {
       }
       return results;
     }
-  };
+  }
 
-  Writer.prototype.writeTextContent = function(node, output, options) {
+  writeTextContent(node, output, options) {
     output.enter();
     this.forEachChild(node, (function(_this) {
       return function(child) {
@@ -136,9 +136,9 @@ let Writer = (function() {
       };
     })(this));
     return output.leave();
-  };
+  }
 
-  Writer.prototype.writeText = function(node, output, options) {
+  writeText(node, output, options) {
     var data, lines;
     if (node.nodeType === 3) {
       data = node.data || '';
@@ -151,9 +151,9 @@ let Writer = (function() {
         })(this));
       }
     }
-  };
+  }
 
-  Writer.prototype.writeTextLine = function(node, line, output, options) {
+  writeTextLine(node, line, output, options) {
     var encodeEntityRef, escapeBackslash, lines, pipe, prefix, ref, ref1, ref2, ref3, ref4, ref5, ref6, trim, wrap;
     if (options == null) {
       options = {};
@@ -195,9 +195,9 @@ let Writer = (function() {
         }
       }
     }
-  };
+  }
 
-  Writer.prototype.breakLine = function(line) {
+  breakLine(line) {
     var lines, word, words;
     if (!line || line.length === 0) {
       return [];
@@ -223,12 +223,6 @@ let Writer = (function() {
       lines.push(line);
     }
     return lines;
-  };
+  }
 
-  return Writer;
-
-})();
-
-export {
-  Writer
-};
+}
