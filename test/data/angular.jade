@@ -1,3 +1,5 @@
-html
-  body
-    button.btn.btn-small(ng-click="login('testing', 'testing')") Test Login
+button#lol.btn.btn-small(
+  '(click)'=`login('testing', 'testing')`
+  '[ngClass]'=`foo`
+)
+  | Test Login
