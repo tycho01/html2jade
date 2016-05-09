@@ -1,5 +1,7 @@
 /// <reference path='./ramda.d.ts' />
 
+let R = require('ramda');
+
 let enquote = (quote: string) => (str: string) => quote + str + quote;
 let safeQuote = (str: string) => R.find(qt => !str.includes(qt));
 let tryQuote = (quotes: string[]) => (str: string) => {
